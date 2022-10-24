@@ -1,8 +1,7 @@
 const read = require('readline-sync');
-const userName = read.question('Whats your name ? ');
-console.log('Hello ' + userName + ' Welcome to Avengers Quiz'+ ' \nAnswer these in character names not super hero names ')
+var score = 0;
 
-const questions =[
+const questions = [
   {
     question: "Who vanished first, in infinity war ",
     answer: "Bucky Barnes",
@@ -43,4 +42,30 @@ const questions =[
     question: "Whom do we love 3000 ",
     answer: "Tony Stark",
   },
-]
+];
+
+function quiz(question, answer) {
+  var userAnswer = read.question(question);
+  if (userAnswer === answer) {
+    score = score + 1;
+    console.log('right ');
+  } else {
+    console.log('wrong ');
+  }
+}
+
+function call_quiz() {
+  for (var i = 0; i < questions.length; i++) {
+    console.log('--------------');
+    quiz(questions[i].question, questions[i].answer);
+  }
+}
+
+function play() {
+  const userName = read.question('Whats your name ? ');
+  console.log('Hello ' + userName + ' Welcome to Avengers Quiz' + ' \nAnswer these in  character names not super hero names ');
+  call_quiz();
+  console.log('Your total score is '+ score);
+}
+
+play();
