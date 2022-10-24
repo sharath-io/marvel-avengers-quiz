@@ -1,3 +1,4 @@
+const chalk = require('chalk');
 const read = require('readline-sync');
 var score = 0;
 
@@ -58,27 +59,28 @@ const questions = [
 
 function quiz(question, options, answer) {
   console.log(question);
-  var userAnswer = read.question(options + ' \n');
+  var userAnswer = read.question(chalk.blue(options) + ' \n');
   if (userAnswer === answer) {
     score = score + 1;
-    console.log('right ');
+    console.log('right! 👏 ');
   } else {
-    console.log('wrong ');
+    console.log('wrong 👎 ');
   }
 }
 
 function call_quiz() {
   for (var i = 0; i < questions.length; i++) {
-    console.log('--------------');
+    console.log('----------------------------');
     quiz(questions[i].question, questions[i].options, questions[i].answer);
   }
 }
 
 function play() {
   const userName = read.question('Whats your name ? ');
-  console.log('Hello ' + userName + ' Welcome to Avengers Quiz' + ' \nAnswer these in  character names not super hero names ');
+  console.log('Hello ' + chalk.red(userName) + ' Welcome to Avengers Quiz' + ' \nAnswer these in  character names not super hero names ');
   call_quiz();
-  console.log('Your total score is ' + score);
+  console.log('----------------------------');
+  console.log('Your total score is ' + chalk.green(score));
 }
 
 play();
